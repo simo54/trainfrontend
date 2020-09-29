@@ -1,0 +1,48 @@
+.App {
+  text-align: center;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  margin-top: 50px;
+}
+
+nav {
+  background-color: #0b294f;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+  font-family: sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 4em;
+  padding: 0;
+}
+
+li {
+  font-size: 25px;
+}
+
+.link:link {
+  text-decoration: none;
+  color: white;
+}
+
+.link:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: white;
+}
