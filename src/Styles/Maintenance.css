@@ -1,0 +1,25 @@
+.tHead {
+  display: flex;
+  font-weight: bold;
+  justify-content: space-around;
+}
+
+.mId {
+  min-width: 90px;
+}
+
+.mName {
+  min-width: 130px;
+}
+
+.mLength {
+  min-width: 90px;
+}
+
+.mStop {
+  min-width: 90px;
+}
+
+.mMaintenance {
+  min-width: 90px;
+}
