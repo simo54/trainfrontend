@@ -1,0 +1,35 @@
+.maintenance {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
+  padding: 0.5em 0;
+}
+
+.true {
+  background-color: green;
+}
+
+.false {
+  background-color: red;
+}
+
+.mTrainId {
+  min-width: 90px;
+}
+
+.mTrainName {
+  min-width: 130px;
+  font-weight: bold;
+}
+
+.mTrainLength {
+  min-width: 90px;
+}
+
+.mTrainStop {
+  min-width: 90px;
+}
+
+.mButton {
+  max-width: 90px;
+}
