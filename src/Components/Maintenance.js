@@ -38,8 +38,8 @@ const Maintenance = () => {
   };
 
   return (
-    <div className="MWrapper">
-      <h1>Maintenance status</h1>
+    <div className="mWrapper">
+      <h1 className="mTitle">Maintenance status</h1>
       <div>
         <div className="tHead">
           <div className="mId">Id</div>

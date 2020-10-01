@@ -1,7 +1,9 @@
 .tHead {
   display: flex;
   font-weight: bold;
+  font-size: 22px;
   justify-content: space-around;
+  margin: 10px 120px;
 }
 
 .mId {
@@ -9,7 +11,7 @@
 }
 
 .mName {
-  min-width: 130px;
+  min-width: 150px;
 }
 
 .mLength {
@@ -22,4 +24,10 @@
 
 .mMaintenance {
   min-width: 90px;
+}
+
+.mTitle {
+  margin-top: 80px;
+  margin-bottom: 60px;
+  font-size: 34px;
 }

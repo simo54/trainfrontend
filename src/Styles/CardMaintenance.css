@@ -1,8 +1,10 @@
 .maintenance {
   display: flex;
   justify-content: space-around;
-  margin-top: 1em;
+  align-items: center;
   padding: 0.5em 0;
+  margin: 10px 120px;
+  font-size: 18px;
 }
 
 .true {
@@ -14,22 +16,50 @@
 }
 
 .mTrainId {
-  min-width: 90px;
+  min-width: 80px;
 }
 
 .mTrainName {
-  min-width: 130px;
+  min-width: 150px;
   font-weight: bold;
 }
 
 .mTrainLength {
-  min-width: 90px;
+  min-width: 100px;
 }
 
 .mTrainStop {
-  min-width: 90px;
+  min-width: 140px;
 }
 
 .mButton {
-  max-width: 90px;
+  width: 80px;
+  cursor: pointer;
+  transition: 0.5s;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.mButton:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.add {
+  background-color: rgb(118, 116, 116);
+  color: white;
+}
+
+.remove {
+  background-color: rgb(118, 116, 116);
+  color: white;
+}
+
+.add:hover {
+  background-color: rgb(135, 40, 40);
+}
+
+.remove:hover {
+  background-color: darkslategrey;
 }

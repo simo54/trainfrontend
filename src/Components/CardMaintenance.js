@@ -12,11 +12,11 @@ const CardMaintenance = (props) => {
       <div className="row mTrainStop">{stop}</div>
       <div>
         {maintenance === false ? (
-          <button className="mButton" onClick={handleMaintenance}>
+          <button className="mButton add" onClick={handleMaintenance}>
             Add
           </button>
         ) : (
-          <button className="mButton" onClick={handleMaintenance}>
+          <button className="mButton remove" onClick={handleMaintenance}>
             Remove
           </button>
         )}
