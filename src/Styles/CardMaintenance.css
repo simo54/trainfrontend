@@ -64,3 +64,14 @@
 .remove:hover {
   background-color: darkslategrey;
 }
+
+@media only screen and (max-width: 820px) {
+  .maintenance {
+    flex-direction: column;
+    width: 200px;
+    justify-content: none;
+    margin: 10px;
+    max-width: 600px;
+    display: inline-block;
+  }
+}
