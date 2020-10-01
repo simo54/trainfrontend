@@ -6,7 +6,6 @@ import "../Styles/Maintenance.css";
 const Maintenance = () => {
   const urlTrains = "http://localhost:5000/trains/";
   const [maintenanceData, setMaintenanceData] = useState({});
-  const [inMaintenance, setInMaintenance] = useState(false);
   const [trainUpdate, setTrainUpdate] = useState(false);
 
   useEffect(() => {
@@ -27,9 +26,9 @@ const Maintenance = () => {
   // Change maintenance status via onClick-Event from false to true and vice  verse
   // Update maintenance status in database with the new value
   const changeMaintenance = async (train) => {
-    train.maintenance === false ? setInMaintenance(true) : setInMaintenance(false);
+    /* train.maintenance === false ? setInMaintenance(true) : setInMaintenance(false); */
     try {
-      await Axios.put(urlTrains + train.id, { maintenance: inMaintenance });
+      await Axios.put(urlTrains + train.id, { maintenance: !train.maintenance });
       setTrainUpdate(true);
       console.log(train.maintenance);
     } catch (error) {
