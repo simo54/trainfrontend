@@ -38,7 +38,7 @@ const Maintenance = () => {
   return (
     <div className="mWrapper">
       <h1 className="mTitle">Maintenance status</h1>
-      <div>
+      <div className="tWrapper">
         <div className="tHead">
           <div className="mId">Id</div>
           <div className="mName">Name</div>
@@ -46,21 +46,23 @@ const Maintenance = () => {
           <div className="mStop">Current stop</div>
           <div className="mMaintenance">Maintenance</div>
         </div>
-        {maintenanceData && maintenanceData.length
-          ? maintenanceData.map((train) => {
-              return (
-                <CardMaintenance
-                  key={train.id}
-                  id={train.id}
-                  name={train.name}
-                  length={train.length}
-                  stop={train.stopid}
-                  maintenance={train.maintenance}
-                  handleMaintenance={() => changeMaintenance(train)}
-                />
-              );
-            })
-          : undefined}
+        <div className="cardWrapper">
+          {maintenanceData && maintenanceData.length
+            ? maintenanceData.map((train) => {
+                return (
+                  <CardMaintenance
+                    key={train.id}
+                    id={train.id}
+                    name={train.name}
+                    length={train.length}
+                    stop={train.stopid}
+                    maintenance={train.maintenance}
+                    handleMaintenance={() => changeMaintenance(train)}
+                  />
+                );
+              })
+            : undefined}
+        </div>
       </div>
     </div>
   );
