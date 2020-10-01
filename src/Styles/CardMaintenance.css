@@ -5,6 +5,7 @@
   padding: 0.5em 0;
   margin: 10px 120px;
   font-size: 18px;
+  border-radius: 10px;
 }
 
 .true {
@@ -12,7 +13,7 @@
 }
 
 .false {
-  background-color: red;
+  background-color: rgb(187, 18, 18);
 }
 
 .mTrainId {
