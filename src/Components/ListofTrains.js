@@ -7,7 +7,7 @@ export default function ListofTrains() {
 
   React.useEffect(() => {
     axios
-      .get("trains/")
+      .get("http://localhost:5000/trains/")
       .then(function (response) {
         const arrayList = response.data;
         setTrainsList(arrayList);
@@ -22,7 +22,7 @@ export default function ListofTrains() {
   };
 
   return (
-    <div className='mainContainer'>
+    <div className="mainContainer">
       <h1>Trains List</h1>
       <button onClick={showStation}>Where is my train?</button>
       <table>
@@ -31,7 +31,7 @@ export default function ListofTrains() {
             <th>id</th>
             <th>city</th>
             <th>Length</th>
-            <th className='stopidTable'>Stop</th>
+            <th className="stopidTable">Stop</th>
           </tr>
         </thead>
         <tbody>
@@ -41,7 +41,7 @@ export default function ListofTrains() {
                   <td>{element.id}</td>
                   <td>{element.name}</td>
                   <td>{element.length}</td>
-                  <td className='stopidTable'>{element.stopid}</td>
+                  <td className="stopidTable">{element.stopid}</td>
                 </tr>
               ))
             : null}
