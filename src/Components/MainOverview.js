@@ -82,7 +82,6 @@ export default function ListofTrains() {
           </option>
           {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
         </select>
-
         {/* </form> */}
       </div>
       {/* End of Dropdown */}
