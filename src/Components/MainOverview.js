@@ -32,21 +32,19 @@ export default function ListofTrains() {
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [stopsList]);
 
   // Creating a toggle in order to display or not the stops
   const showStation = () => {
     setToggle(true);
   };
 
-  const getSelectValue = () => {
-    const cityValue = document.getElementById("stops");
-    const value = cityValue.options[cityValue.selectedIndex].text;
-    console.log(value);
+  const getSelectValue = (e) => {
     const uniqueValues = stopsList.filter(function (data) {
-      return data.city === value;
+      return data.city === e.target.value;
     });
     setStopsList(uniqueValues);
+    console.log(uniqueValues);
   };
 
   return (
