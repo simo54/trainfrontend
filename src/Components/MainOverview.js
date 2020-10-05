@@ -7,6 +7,7 @@ export default function ListofTrains() {
   const [stopsList, setStopsList] = useState();
   const [toggle, setToggle] = useState(false);
   const [stopsFiltered, setStopsFiltered] = useState();
+  const [mapDropSelection, SetMapDropSelection] = useState();
 
   useEffect(() => {
     axios
@@ -32,7 +33,7 @@ export default function ListofTrains() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [stopsList]);
+  }, []);
 
   // Creating a toggle in order to display or not the stops
   const showStation = () => {
@@ -41,10 +42,13 @@ export default function ListofTrains() {
 
   const getSelectValue = (e) => {
     const uniqueValues = stopsList.filter(function (data) {
-      return data.city === e.target.value;
+      if (e.target.value === "showAll") {
+        return data.city;
+      } else {
+        return data.city === e.target.value;
+      }
     });
-    setStopsList(uniqueValues);
-    console.log(uniqueValues);
+    SetMapDropSelection(uniqueValues);
   };
 
   return (
@@ -82,6 +86,7 @@ export default function ListofTrains() {
             -- select an option --
           </option>
           {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
+          <option>showAll</option>
         </select>
       </div>
       {/* End of Dropdown */}
@@ -95,8 +100,8 @@ export default function ListofTrains() {
           </tr>
         </thead>
         <tbody>
-          {stopsList
-            ? stopsList.map((element, index) => (
+          {mapDropSelection && mapDropSelection.length
+            ? mapDropSelection.map((element, index) => (
                 <tr key={index}>
                   <td>{element.id}</td>
                   <td>{element.city}</td>
