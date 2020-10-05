@@ -24,10 +24,10 @@ export default function ListofTrains() {
     axios
       .get("http://localhost:5000/stops/")
       .then(function (response) {
-        const arrayList = response.data;
-        const filteredStops = [...new Set(arrayList.map((data) => data.city))];
+        const stopsListRaw = response.data;
+        const filteredStops = [...new Set(stopsListRaw.map((data) => data.city))];
         setStopsFiltered(filteredStops);
-        setStopsList(arrayList);
+        setStopsList(stopsListRaw);
       })
       .catch(function (error) {
         console.log(error);
@@ -40,9 +40,13 @@ export default function ListofTrains() {
   };
 
   const getSelectValue = () => {
-    const test = document.getElementById("stops");
-    const text = test.options[test.selectedIndex].text;
-    console.log(text);
+    const cityValue = document.getElementById("stops");
+    const value = cityValue.options[cityValue.selectedIndex].text;
+    console.log(value);
+    const uniqueValues = stopsList.filter(function (data) {
+      return data.city === value;
+    });
+    setStopsList(uniqueValues);
   };
 
   return (
@@ -74,7 +78,6 @@ export default function ListofTrains() {
       <h1>Stops List</h1>
       {/* Dropdown */}
       <div>
-        {/* <form onSubmit={() => check()}> */}
         <label for='cars'>Choose a stop:</label>
         <select name='stops' id='stops' onChange={getSelectValue}>
           <option disabled selected value>
@@ -82,7 +85,6 @@ export default function ListofTrains() {
           </option>
           {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
         </select>
-        {/* </form> */}
       </div>
       {/* End of Dropdown */}
 
