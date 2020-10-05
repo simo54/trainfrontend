@@ -32,7 +32,7 @@ export default function ListofTrains() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [stopsList]);
+  }, [stopsFiltered]);
 
   // Creating a toggle in order to display or not the stops
   const showStation = () => {
@@ -48,7 +48,7 @@ export default function ListofTrains() {
   };
 
   return (
-    <div className='mainContainer'>
+    <div className="mainContainer">
       <h1>Trains List</h1>
       <button onClick={showStation}>Where are these trains now?</button>
       <table>
@@ -76,8 +76,8 @@ export default function ListofTrains() {
       <h1>Stops List</h1>
       {/* Dropdown */}
       <div>
-        <label for='cars'>Choose a stop:</label>
-        <select name='stops' id='stops' onChange={getSelectValue}>
+        <label for="cars">Choose a stop:</label>
+        <select name="stops" id="stops" onChange={getSelectValue}>
           <option disabled selected value>
             -- select an option --
           </option>
@@ -95,7 +95,7 @@ export default function ListofTrains() {
           </tr>
         </thead>
         <tbody>
-          {stopsList
+          {stopsList && stopsList.length
             ? stopsList.map((element, index) => (
                 <tr key={index}>
                   <td>{element.id}</td>
