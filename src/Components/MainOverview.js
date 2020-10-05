@@ -6,10 +6,11 @@ export default function ListofTrains() {
   const [trainsList, setTrainsList] = useState();
   const [stopsList, setStopsList] = useState();
   const [toggle, setToggle] = useState(false);
+  const [stopsFiltered, setStopsFiltered] = useState();
 
   useEffect(() => {
     axios
-      .get("trains/")
+      .get("http://localhost:5000/trains/")
       .then(function (response) {
         const arrayList = response.data;
         setTrainsList(arrayList);
@@ -21,9 +22,11 @@ export default function ListofTrains() {
 
   useEffect(() => {
     axios
-      .get("stops/")
+      .get("http://localhost:5000/stops/")
       .then(function (response) {
         const arrayList = response.data;
+        const filteredStops = [...new Set(arrayList.map((data) => data.city))];
+        setStopsFiltered(filteredStops);
         setStopsList(arrayList);
       })
       .catch(function (error) {
@@ -34,6 +37,12 @@ export default function ListofTrains() {
   // Creating a toggle in order to display or not the stops
   const showStation = () => {
     setToggle(true);
+  };
+
+  const getSelectValue = () => {
+    const test = document.getElementById("stops");
+    const text = test.options[test.selectedIndex].text;
+    console.log(text);
   };
 
   return (
@@ -63,6 +72,21 @@ export default function ListofTrains() {
         </tbody>
       </table>
       <h1>Stops List</h1>
+      {/* Dropdown */}
+      <div>
+        {/* <form onSubmit={() => check()}> */}
+        <label for='cars'>Choose a stop:</label>
+        <select name='stops' id='stops' onChange={getSelectValue}>
+          <option disabled selected value>
+            -- select an option --
+          </option>
+          {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
+        </select>
+
+        {/* </form> */}
+      </div>
+      {/* End of Dropdown */}
+
       <table>
         <thead>
           <tr>
