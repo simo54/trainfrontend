@@ -18,6 +18,7 @@ const Maintenance = () => {
       const { data } = await Axios.get(urlTrains);
       setMaintenanceData(data);
       setTrainUpdate(false);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -48,10 +49,10 @@ const Maintenance = () => {
         </div>
         <div className="cardWrapper">
           {maintenanceData && maintenanceData.length
-            ? maintenanceData.map((train) => {
-                return (
+            ? maintenanceData.map((train, index) => {
+                return train.id !== null ? (
                   <CardMaintenance
-                    key={train.id}
+                    key={index}
                     id={train.id}
                     name={train.name}
                     length={train.length}
@@ -59,7 +60,7 @@ const Maintenance = () => {
                     maintenance={train.maintenance}
                     handleMaintenance={() => changeMaintenance(train)}
                   />
-                );
+                ) : undefined;
               })
             : undefined}
         </div>
