@@ -1,9 +1,15 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTools } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/CardMaintenance.css";
 
 const CardMaintenance = (props) => {
   const { id, name, length, stop, maintenance, handleMaintenance } = props;
   const maintenanceClass = `maintenance + ${maintenance ? "true" : "false"} `;
+
+  /*  const element = <FontAwesomeIcon icon={faTools} />; */
+
   return (
     <div className={maintenanceClass}>
       <div className="row mTrainId">{id}</div>
@@ -12,13 +18,19 @@ const CardMaintenance = (props) => {
       <div className="row mTrainStop">{stop}</div>
       <div>
         {maintenance === false ? (
-          <button className="mButton add" onClick={handleMaintenance}>
-            Add
-          </button>
+          <div>
+            <button className="mButton add" onClick={handleMaintenance}>
+              Add
+            </button>
+            <FontAwesomeIcon className="icon" icon={faTools} />
+          </div>
         ) : (
-          <button className="mButton remove" onClick={handleMaintenance}>
-            Remove
-          </button>
+          <div>
+            <button className="mButton remove" onClick={handleMaintenance}>
+              Remove
+            </button>
+            <FontAwesomeIcon className="icon" icon={faCheckCircle} />
+          </div>
         )}
       </div>
     </div>
