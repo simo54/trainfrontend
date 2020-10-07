@@ -3,6 +3,11 @@ import axios from "axios";
 
 export default function Mover() {
   const [RunningtrainsList, setRunningTrainsList] = React.useState();
+  const [stopsList, setStopsList] = React.useState();
+  const [stopsFiltered, setStopsFiltered] = React.useState();
+
+  // Fetch all the train not in Maintenance
+
   React.useEffect(() => {
     axios
       .get("http://localhost:5000/trains/running")
@@ -15,10 +20,35 @@ export default function Mover() {
       });
   }, []);
 
+  // Fetch the stops
+
+  React.useEffect(() => {
+    axios
+      .get("http://localhost:5000/stops/")
+      .then(function (response) {
+        const stopsListRaw = response.data;
+        const filteredStops = [
+          ...new Set(stopsListRaw.map((data) => data.city)),
+        ];
+        setStopsFiltered(filteredStops);
+        setStopsList(stopsListRaw);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  const getSelectValue = (e) => {
+    const uniqueValues = stopsList.map(function (data) {
+      return data.city === e.target.value;
+    });
+    console.log(uniqueValues);
+  };
+
+  // display the Running Trains
   return (
     <div className="RunningTrainContainer">
       <h2>Running Trains List</h2>
-
       <table>
         <thead>
           <tr>
@@ -36,6 +66,23 @@ export default function Mover() {
                   <td>{element.name}</td>
                   <td>{element.length}</td>
                   <td className="empty">{element.stopid}</td>
+                  <td>
+                    {/* Dropdown running trains */}
+                    <div>
+                      <label for="cars">Choose a stop:</label>
+                      <select name="stops" id="stops" onChange={getSelectValue}>
+                        <option disabled selected value>
+                          -- Where do you want to send your train? --
+                        </option>
+                        {stopsList
+                          ? stopsFiltered.map((element, index) => (
+                              <option key={index}>{element}</option>
+                            ))
+                          : null}
+                      </select>
+                    </div>
+                    {/* End of Dropdown running trains*/}
+                  </td>
                 </tr>
               ))
             : null}
