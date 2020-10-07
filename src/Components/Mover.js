@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../Styles/Mover.css";
 
 export default function Mover() {
-  const [runningTrainsList, setRunningTrainsList] = React.useState();
-  const [stopsList, setStopsList] = React.useState();
-  const [stopsFiltered, setStopsFiltered] = React.useState();
-  const [trainUpdate, setTrainUpdate] = React.useState(false);
+  const [runningTrainsList, setRunningTrainsList] = useState();
+  const [stopsList, setStopsList] = useState();
+  const [stopsFiltered, setStopsFiltered] = useState();
+  const [trainUpdate, setTrainUpdate] = useState(false);
 
   // Fetch all the train not in Maintenance
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios
       .get("http://localhost:5000/trains/running")
-      .then(function (response) {
+      .then((response) => {
         const arrayList = response.data;
         setRunningTrainsList(arrayList);
         setTrainUpdate(false);
@@ -24,13 +25,15 @@ export default function Mover() {
 
   // Fetch the stops
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios
       .get("http://localhost:5000/stops/")
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
         const stopsListRaw = response.data;
-        const filteredStops = [...new Set(stopsListRaw.map((data) => data.city))];
+        const filteredStops = [
+          ...new Set(stopsListRaw.map((data) => data.city)),
+        ];
         setStopsFiltered(filteredStops);
         setStopsList(stopsListRaw);
         console.log(stopsListRaw);
@@ -53,7 +56,9 @@ export default function Mover() {
     else if (city === "Düsseldorf") newStopId = 6;
 
     axios
-      .put("http://localhost:5000/trains/sendtostation/" + id, { stopid: newStopId })
+      .put("http://localhost:5000/trains/sendtostation/" + id, {
+        stopid: newStopId,
+      })
       .then((data) => {
         setTrainUpdate(true);
         console.log(data);
@@ -61,17 +66,18 @@ export default function Mover() {
       .catch((error) => console.log(error));
   };
 
-  // display the Running Trains
+  // display the Running Trains (not In Maintenance)
+
   return (
     <div className="RunningTrainContainer">
-      <h2>Running Trains List</h2>
-      <table>
+      <h2> Running Trains List</h2>
+      <table className="RunningTrainContainerTable">
         <thead>
           <tr>
             <th>id</th>
             <th>city</th>
             <th>Length</th>
-            <th className="empty">Stop</th>
+            <th>Stop</th>
           </tr>
         </thead>
         <tbody>
@@ -81,12 +87,16 @@ export default function Mover() {
                   <td>{element.id}</td>
                   <td>{element.name}</td>
                   <td>{element.length}</td>
-                  <td className="empty">{element.stopid}</td>
+                  <td>{element.stopid}</td>
                   <td>
                     {/* Dropdown running trains */}
                     <div>
                       <label for="cars">Choose a stop:</label>
-                      <select name="stops" id="stops" onChange={(e) => getSelectValue(e, element)}>
+                      <select
+                        name="stops"
+                        id="stops"
+                        onChange={(e) => getSelectValue(e, element)}
+                      >
                         <option disabled selected value>
                           -- Where do you want to send your train? --
                         </option>
