@@ -2,9 +2,10 @@ import React from "react";
 import axios from "axios";
 
 export default function Mover() {
-  const [RunningtrainsList, setRunningTrainsList] = React.useState();
+  const [runningTrainsList, setRunningTrainsList] = React.useState();
   const [stopsList, setStopsList] = React.useState();
   const [stopsFiltered, setStopsFiltered] = React.useState();
+  const [trainUpdate, setTrainUpdate] = React.useState(false);
 
   // Fetch all the train not in Maintenance
 
@@ -28,9 +29,7 @@ export default function Mover() {
       .get("http://localhost:5000/stops/")
       .then(function (response) {
         const stopsListRaw = response.data;
-        const filteredStops = [
-          ...new Set(stopsListRaw.map((data) => data.city)),
-        ];
+        const filteredStops = [...new Set(stopsListRaw.map((data) => data.city))];
         setStopsFiltered(filteredStops);
         setStopsList(stopsListRaw);
       })
@@ -39,11 +38,23 @@ export default function Mover() {
       });
   }, []);
 
-  const getSelectValue = (e) => {
-    const uniqueValues = stopsList.map(function (data) {
+  const getSelectValue = (e, train) => {
+    console.log(train);
+    console.log(e.target.value);
+    console.log(e.target);
+    const id = train.id;
+
+    axios
+      .put("http://localhost:5000/trains/sendtostation/" + id /* { stopid:  } */)
+      .then((data) => {
+        setTrainUpdate(true);
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+    /* const uniqueValues = stopsList.map(function (data) {
       return data.city === e.target.value;
     });
-    console.log(uniqueValues);
+    console.log(uniqueValues); */
   };
 
   // display the Running Trains
@@ -60,8 +71,8 @@ export default function Mover() {
           </tr>
         </thead>
         <tbody>
-          {RunningtrainsList
-            ? RunningtrainsList.map((element, index) => (
+          {runningTrainsList
+            ? runningTrainsList.map((element, index) => (
                 <tr key={index}>
                   <td>{element.id}</td>
                   <td>{element.name}</td>
@@ -71,15 +82,11 @@ export default function Mover() {
                     {/* Dropdown running trains */}
                     <div>
                       <label for="cars">Choose a stop:</label>
-                      <select name="stops" id="stops" onChange={getSelectValue}>
+                      <select name="stops" id="stops" onChange={(e) => getSelectValue(e, element)}>
                         <option disabled selected value>
                           -- Where do you want to send your train? --
                         </option>
-                        {stopsList
-                          ? stopsFiltered.map((element, index) => (
-                              <option key={index}>{element}</option>
-                            ))
-                          : null}
+                        {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
                       </select>
                     </div>
                     {/* End of Dropdown running trains*/}

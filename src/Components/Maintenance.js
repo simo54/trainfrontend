@@ -57,7 +57,7 @@ const Maintenance = () => {
                     id={train.id}
                     name={train.name}
                     length={train.length}
-                    stop={train.stopid}
+                    stop={train.city}
                     maintenance={train.maintenance}
                     handleMaintenance={() => changeMaintenance(train)}
                   />
