@@ -4,6 +4,20 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: auto;
+}
+
+.headAndButton {
+  display: flex;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#stopView {
+  width: 50%;
 }
 
 .trainTable-Container,
@@ -21,6 +35,9 @@ body {
   border-radius: 20px 20px 0 0;
   overflow: hidden;
   box-shadow: 0 0 5px #3b5249;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #trainTable thead tr,
@@ -51,4 +68,16 @@ td {
 #trainTable tbody tr:last-of-type,
 #stopsTable tbody tr:last-of-type {
   border-bottom: 3px solid #28df99;
+}
+
+#trainsButton {
+  width: 200px;
+  height: 50px;
+  margin: 0 20px;
+  vertical-align: baseline;
+}
+
+#trainView {
+  justify-content: center;
+  width: 50%;
 }

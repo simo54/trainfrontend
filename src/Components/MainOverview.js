@@ -60,12 +60,14 @@ export default function ListofTrains() {
 
   return (
     <div className='mainContainer'>
-      <h1>Trains List</h1>
-
-      {/* Button to show station column */}
-      <button onClick={showStation}>Where are the trains now?</button>
-
-      <div className='trainTable-Container'>
+      <div id='trainView'>
+        <div className='titleTrain'>
+          <h1>Trains List</h1>
+        </div>
+        {/* Button to show station column */}
+        <button onClick={showStation} id='trainsButton'>
+          Where are the trains now?
+        </button>
         <table id='trainTable'>
           <thead>
             <tr>
@@ -94,24 +96,27 @@ export default function ListofTrains() {
         </table>
       </div>
 
-      <h1>Stops List</h1>
-      {/* Dropdown */}
-      <div className='stopsTable-Container'>
-        <div id='dropdownStops'>
-          <label for='cars'>Choose a stop:</label>
-          {/* OnChange will get the value of a city */}
-          <select name='stops' id='stops' onChange={getSelectValue}>
-            {/* Basic option on every refresh */}
-            <option disabled selected value>
-              -- select an option --
-            </option>
-            {/* Checking the existing of stopsList data, if yes we map the results taken from the filter of stopslist */}
-            {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
-            <option>showAll</option>
-          </select>
+      <div id='stopView'>
+        <div className='introStop'>
+          <h1>Stops List</h1>
+          {/* Dropdown */}
+          <div className='stopsTable-Container'>
+            <div id='dropdownStops'>
+              <label for='cars'>Choose a stop:</label>
+              {/* OnChange will get the value of a city */}
+              <select name='stops' id='stops' onChange={getSelectValue}>
+                {/* Basic option on every refresh */}
+                <option disabled selected value>
+                  -- select an option --
+                </option>
+                {/* Checking the existing of stopsList data, if yes we map the results taken from the filter of stopslist */}
+                {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
+                <option>showAll</option>
+              </select>
+            </div>
+            {/* End of Dropdown */}
+          </div>
         </div>
-        {/* End of Dropdown */}
-
         <table id='stopsTable' className={mapDropSelection ? "" : "stopidTable"}>
           <thead>
             <tr>
@@ -123,13 +128,21 @@ export default function ListofTrains() {
           <tbody>
             {/* Checking the existing of mapDropSelection data (only cities), if yes we map only the data of a selected city */}
             {mapDropSelection && mapDropSelection.length
-              ? mapDropSelection.map((element, index) => (
-                  <tr key={index}>
-                    <td>{element.id}</td>
-                    <td>{element.city}</td>
-                    <td>{element.name}</td>
-                  </tr>
-                ))
+              ? mapDropSelection.map((element, index) => {
+                  return element.id !== null ? (
+                    <tr key={element.id}>
+                      <td>{element.id}</td>
+                      <td>{element.city}</td>
+                      <td>{element.name}</td>
+                    </tr>
+                  ) : (
+                    <tr>
+                      <td>/</td>
+                      <td>/</td>
+                      <td>/</td>
+                    </tr>
+                  );
+                })
               : null}
           </tbody>
         </table>
