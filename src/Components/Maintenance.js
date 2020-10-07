@@ -19,6 +19,7 @@ const Maintenance = () => {
       setMaintenanceData(data);
       console.log(data);
       setTrainUpdate(false);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -49,8 +50,18 @@ const Maintenance = () => {
         </div>
         <div className='cardWrapper'>
           {maintenanceData && maintenanceData.length
-            ? maintenanceData.map((train) => {
-                return <CardMaintenance key={train.id} id={train.id} name={train.name} length={train.length} stop={train.stopid} maintenance={train.maintenance} handleMaintenance={() => changeMaintenance(train)} />;
+            ? maintenanceData.map((train, index) => {
+                return train.id !== null ? (
+                  <CardMaintenance
+                    key={index}
+                    id={train.id}
+                    name={train.name}
+                    length={train.length}
+                    stop={train.stopid}
+                    maintenance={train.maintenance}
+                    handleMaintenance={() => changeMaintenance(train)}
+                  />
+                ) : undefined;
               })
             : undefined}
         </div>

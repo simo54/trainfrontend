@@ -28,8 +28,10 @@ export default function ListofTrains() {
       .get("http://localhost:5000/stops/")
       .then(function (response) {
         const stopsListRaw = response.data;
+
         // Filtered list of city stops, this will be used for the dropdown menu
         const filteredStops = [...new Set(stopsListRaw.map((data) => data.city))];
+
         setStopsFiltered(filteredStops);
         setStopsList(stopsListRaw);
       })
@@ -61,6 +63,7 @@ export default function ListofTrains() {
   return (
     <div className='mainContainer'>
       <h1>Trains List</h1>
+
       {/* Button to show station column */}
       <button onClick={showStation}>Where are the trains now?</button>
 
@@ -111,6 +114,7 @@ export default function ListofTrains() {
           </select>
         </div>
         {/* End of Dropdown */}
+
 
         <table id='stopsTable'>
           <thead>
