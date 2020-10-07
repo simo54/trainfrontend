@@ -1,0 +1,22 @@
+h2 {
+  margin-top: 70px;
+  margin-bottom: 40px;
+  font-size: 34px;
+}
+
+.RunningTrainContainer {
+}
+
+thead {
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.RunningTrainContainerTable {
+  /* display: flex; */
+  justify-content: center;
+  background-color: #28df99;
+  border-radius: 10px;
+}
