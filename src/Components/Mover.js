@@ -15,12 +15,12 @@ export default function Mover() {
       .then(function (response) {
         const arrayList = response.data;
         setRunningTrainsList(arrayList);
-        console.log(arrayList);
+        setTrainUpdate(false);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [trainUpdate]);
 
   // Fetch the stops
 
@@ -32,29 +32,31 @@ export default function Mover() {
         const filteredStops = [...new Set(stopsListRaw.map((data) => data.city))];
         setStopsFiltered(filteredStops);
         setStopsList(stopsListRaw);
+        setTrainUpdate(false);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [trainUpdate]);
 
   const getSelectValue = (e, train) => {
-    console.log(train);
-    console.log(e.target.value);
-    console.log(e.target);
     const id = train.id;
+    let city = e.target.value;
+    let newStopId = 0;
+    if (city === "Frankfurt") newStopId = 3;
+    else if (city === "Berlin") newStopId = 2;
+    else if (city === "München") newStopId = 5;
+    else if (city === "Stuttgart") newStopId = 4;
+    else if (city === "Hamburg") newStopId = 1;
+    else if (city === "Düsseldorf") newStopId = 6;
 
     axios
-      .put("http://localhost:5000/trains/sendtostation/" + id /* { stopid:  } */)
+      .put("http://localhost:5000/trains/sendtostation/" + id, { stopid: newStopId })
       .then((data) => {
         setTrainUpdate(true);
         console.log(data);
       })
       .catch((error) => console.log(error));
-    /* const uniqueValues = stopsList.map(function (data) {
-      return data.city === e.target.value;
-    });
-    console.log(uniqueValues); */
   };
 
   // display the Running Trains
@@ -86,7 +88,13 @@ export default function Mover() {
                         <option disabled selected value>
                           -- Where do you want to send your train? --
                         </option>
-                        {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
+                        {stopsList && stopsList.length
+                          ? stopsFiltered.map((element, index) => (
+                              <option getId={element.stopid} key={index}>
+                                {element}
+                              </option>
+                            ))
+                          : null}
                       </select>
                     </div>
                     {/* End of Dropdown running trains*/}
