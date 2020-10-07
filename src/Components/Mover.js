@@ -61,7 +61,7 @@ export default function Mover() {
 
   // display the Running Trains
   return (
-    <div className="RunningTrainContainer">
+    <div className='RunningTrainContainer'>
       <h2>Running Trains List</h2>
       <table>
         <thead>
@@ -69,7 +69,7 @@ export default function Mover() {
             <th>id</th>
             <th>city</th>
             <th>Length</th>
-            <th className="empty">Stop</th>
+            <th className='empty'>Stop</th>
           </tr>
         </thead>
         <tbody>
@@ -79,12 +79,12 @@ export default function Mover() {
                   <td>{element.id}</td>
                   <td>{element.name}</td>
                   <td>{element.length}</td>
-                  <td className="empty">{element.stopid}</td>
+                  <td className='empty'>{element.stopid}</td>
                   <td>
                     {/* Dropdown running trains */}
                     <div>
-                      <label for="cars">Choose a stop:</label>
-                      <select name="stops" id="stops" onChange={(e) => getSelectValue(e, element)}>
+                      <label for='cars'>Choose a stop:</label>
+                      <select name='stops' id='stops' onChange={(e) => getSelectValue(e, element)}>
                         <option disabled selected value>
                           -- Where do you want to send your train? --
                         </option>
