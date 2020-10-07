@@ -77,7 +77,7 @@ export default function Mover() {
             <th>Id</th>
             <th>Train</th>
             <th>Length</th>
-            <th>Stop</th>
+            <th>Stop Id</th>
             <th>Destination</th>
           </tr>
         </thead>
@@ -92,7 +92,7 @@ export default function Mover() {
                   <td>
                     {/* Dropdown running trains */}
                     <div>
-                      <label for="cars">Choose a stop:</label>
+                      <label for="cars">Choose a destination:</label>
                       <select
                         name="stops"
                         id="stops"
