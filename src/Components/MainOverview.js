@@ -89,6 +89,7 @@ export default function ListofTrains() {
           <option disabled selected value>
             -- select an option --
           </option>
+
           {stopsList
             ? stopsFiltered.map((element, index) => (
                 <option key={index}>{element}</option>

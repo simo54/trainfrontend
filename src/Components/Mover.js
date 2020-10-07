@@ -14,6 +14,7 @@ export default function Mover() {
       .then(function (response) {
         const arrayList = response.data;
         setRunningTrainsList(arrayList);
+        console.log(arrayList);
       })
       .catch(function (error) {
         console.log(error);

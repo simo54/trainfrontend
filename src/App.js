@@ -2,8 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Maintenance from "../src/Components/Maintenance";
 import Mover from "./Components/Mover";
-import ListofTrains from "./Components/ListofTrains";
-import ListofStops from "./Components/ListofStops";
+import MainView from "./Components/MainOverview";
 
 import "./App.css";
 
@@ -15,12 +14,7 @@ const App = () => {
           <ul>
             <li>
               <Link className='link' to='/'>
-                Trains
-              </Link>
-            </li>
-            <li>
-              <Link className='link' to='/stops'>
-                Stops
+                Main View
               </Link>
             </li>
             <li>
@@ -38,10 +32,7 @@ const App = () => {
 
         <Switch>
           <Route exact path='/'>
-            <ListofTrains />
-          </Route>
-          <Route exact path='/stops'>
-            <ListofStops />
+            <MainView />
           </Route>
           <Route exact path='/mover'>
             <Mover />
