@@ -26,7 +26,9 @@ export default function ListofTrains() {
       .get("http://localhost:5000/stops/")
       .then(function (response) {
         const stopsListRaw = response.data;
-        const filteredStops = [...new Set(stopsListRaw.map((data) => data.city))];
+        const filteredStops = [
+          ...new Set(stopsListRaw.map((data) => data.city)),
+        ];
         setStopsFiltered(filteredStops);
         setStopsList(stopsListRaw);
       })
@@ -71,7 +73,9 @@ export default function ListofTrains() {
                   <td>{element.id}</td>
                   <td>{element.name}</td>
                   <td>{element.length}</td>
-                  <td className={toggle === true ? "" : "stopidTable"}>{element.city}</td>
+                  <td className={toggle === true ? "" : "stopidTable"}>
+                    {element.city}
+                  </td>
                 </tr>
               ))
             : null}
@@ -85,7 +89,12 @@ export default function ListofTrains() {
           <option disabled selected value>
             -- select an option --
           </option>
-          {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
+
+          {stopsList
+            ? stopsFiltered.map((element, index) => (
+                <option key={index}>{element}</option>
+              ))
+            : null}
           <option>showAll</option>
         </select>
       </div>
