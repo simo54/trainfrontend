@@ -17,9 +17,7 @@ const Maintenance = () => {
     try {
       const { data } = await Axios.get(urlTrains);
       setMaintenanceData(data);
-      console.log(data);
       setTrainUpdate(false);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -38,17 +36,17 @@ const Maintenance = () => {
   };
 
   return (
-    <div className='mWrapper'>
-      <h1 className='mTitle'>Maintenance status</h1>
-      <div className='tWrapper'>
-        <div className='tHead'>
-          <div className='mId'>Id</div>
-          <div className='mName'>Name</div>
-          <div className='mLength'>Length</div>
-          <div className='mStop'>Current stop</div>
-          <div className='mMaintenance'>Maintenance</div>
+    <div className="mWrapper">
+      <h1 className="mTitle">Maintenance status</h1>
+      <div className="tWrapper">
+        <div className="tHead">
+          <div className="mId">Id</div>
+          <div className="mName">Name</div>
+          <div className="mLength">Length</div>
+          <div className="mStop">Current stop</div>
+          <div className="mMaintenance">Maintenance</div>
         </div>
-        <div className='cardWrapper'>
+        <div className="cardWrapper">
           {maintenanceData && maintenanceData.length
             ? maintenanceData.map((train, index) => {
                 return train.id !== null ? (
