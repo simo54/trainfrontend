@@ -1,3 +1,54 @@
 .stopidTable {
   display: none;
 }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.trainTable-Container,
+.stopsTable-Container {
+  display: flex;
+  justify-content: center;
+}
+
+#trainTable,
+#stopsTable {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 5px #3b5249;
+}
+
+#trainTable thead tr,
+#stopsTable thead tr {
+  background-color: #28df99;
+  color: #f6f7d4;
+  text-align: center;
+  font-weight: bold;
+}
+
+#trainTable th,
+td,
+#stopsTable th,
+td {
+  padding: 12px 15px;
+}
+
+#trainTable tbody tr,
+#stopsTable tbody tr {
+  border-bottom: 1px solid grey;
+}
+
+#trainTable tbody tr:nth-of-type(even),
+#stopsTable tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+#trainTable tbody tr:last-of-type,
+#stopsTable tbody tr:last-of-type {
+  border-bottom: 3px solid #28df99;
+}
