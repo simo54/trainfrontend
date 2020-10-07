@@ -23,7 +23,7 @@ export default function Mover() {
       });
   }, [trainUpdate]);
 
-  // Fetch the stops
+  // Fetch the stops (Cities)
 
   useEffect(() => {
     axios
@@ -74,10 +74,11 @@ export default function Mover() {
       <table className="RunningTrainContainerTable">
         <thead>
           <tr>
-            <th>id</th>
-            <th>city</th>
+            <th>Id</th>
+            <th>Train</th>
             <th>Length</th>
             <th>Stop</th>
+            <th>Destination</th>
           </tr>
         </thead>
         <tbody>

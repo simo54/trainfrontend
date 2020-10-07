@@ -5,16 +5,21 @@ h2 {
 }
 
 .RunningTrainContainer {
+  /* display: flex; */
 }
 
 thead {
   justify-content: center;
-  display: flex;
+  /* display: flex; */
   font-weight: bold;
-  font-size: 22px;
+  font-size: 20px;
+  background-color: yellow;
+  width: auto;
+  border-radius: 20px;
 }
 
 .RunningTrainContainerTable {
+  width: auto;
   /* display: flex; */
   justify-content: center;
   background-color: #28df99;
