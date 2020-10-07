@@ -90,11 +90,13 @@ export default function ListofTrains() {
             -- select an option --
           </option>
 
+
           {stopsList
             ? stopsFiltered.map((element, index) => (
                 <option key={index}>{element}</option>
               ))
             : null}
+
           <option>showAll</option>
         </select>
       </div>
