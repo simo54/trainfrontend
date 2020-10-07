@@ -13,11 +13,11 @@ export default function ListofTrains() {
   useEffect(() => {
     axios
       .get("http://localhost:5000/trains/")
-      .then(function (response) {
+      .then((response) => {
         const arrayList = response.data;
         setTrainsList(arrayList);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
@@ -26,16 +26,14 @@ export default function ListofTrains() {
   useEffect(() => {
     axios
       .get("http://localhost:5000/stops/")
-      .then(function (response) {
+      .then((response) => {
         const stopsListRaw = response.data;
         // Filtered list of city stops, this will be used for the dropdown menu
         const filteredStops = [...new Set(stopsListRaw.map((data) => data.city))];
-        console.log(filteredStops);
-        console.log(stopsListRaw);
         setStopsFiltered(filteredStops);
         setStopsList(stopsListRaw);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
@@ -47,7 +45,7 @@ export default function ListofTrains() {
 
   // Using the getSelectValue we will get only the stop with the all available trains, if we want to see them all we can select showAll
   const getSelectValue = (e) => {
-    const uniqueValues = stopsList.filter(function (data) {
+    const uniqueValues = stopsList.filter((data) => {
       // We create a variable that will filter the existing stopsList
       if (e.target.value === "showAll") {
         // If showAll is selected, we will show all cities
@@ -101,7 +99,6 @@ export default function ListofTrains() {
       <div className='stopsTable-Container'>
         <div id='dropdownStops'>
           <label for='cars'>Choose a stop:</label>
-
           {/* OnChange will get the value of a city */}
           <select name='stops' id='stops' onChange={getSelectValue}>
             {/* Basic option on every refresh */}
@@ -109,14 +106,13 @@ export default function ListofTrains() {
               -- select an option --
             </option>
             {/* Checking the existing of stopsList data, if yes we map the results taken from the filter of stopslist */}
-            {stopsList && stopsList.length ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
+            {stopsList ? stopsFiltered.map((element, index) => <option key={index}>{element}</option>) : null}
             <option>showAll</option>
           </select>
         </div>
         {/* End of Dropdown */}
 
-        {mapDropSelection && mapDropSelection.length}
-        <table id='stopsTable'>
+        <table id='stopsTable' className={mapDropSelection ? "" : "stopidTable"}>
           <thead>
             <tr>
               <th>id</th>
