@@ -6,9 +6,9 @@ import "../Styles/CardMaintenance.css";
 
 const CardMaintenance = (props) => {
   const { id, name, length, stop, maintenance, handleMaintenance } = props;
-  const maintenanceClass = `maintenance + ${maintenance ? "true" : "false"} `;
 
-  /*  const element = <FontAwesomeIcon icon={faTools} />; */
+  // adding dynamically class for changing color
+  const maintenanceClass = `maintenance + ${maintenance ? "true" : "false"} `;
 
   return (
     <div className={maintenanceClass}>
