@@ -41,7 +41,7 @@ const Maintenance = () => {
       <div className="tWrapper">
         <div className="tHead">
           <div className="mId">Id</div>
-          <div className="mName">Name</div>
+          <div className="mName">Train</div>
           <div className="mLength">Length</div>
           <div className="mStop">Current stop</div>
           <div className="mMaintenance">Maintenance</div>

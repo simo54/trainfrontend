@@ -59,20 +59,20 @@ export default function ListofTrains() {
   };
 
   return (
-    <div className='mainContainer'>
-      <div id='trainView'>
-        <div className='titleTrain'>
+    <div className="mainContainer">
+      <div id="trainView">
+        <div className="titleTrain">
           <h1>Trains List</h1>
         </div>
         {/* Button to show station column */}
-        <button onClick={showStation} id='trainsButton'>
+        <button onClick={showStation} id="trainsButton">
           Where are the trains now?
         </button>
-        <table id='trainTable'>
+        <table id="trainTable">
           <thead>
             <tr>
-              <th>id</th>
-              <th>city</th>
+              <th>Id</th>
+              <th>Train</th>
               <th>Length</th>
               {/* If button is clicked, we will show the additional column thanks to css in MainOverview.css */}
               <th className={toggle === true ? "" : "stopidTable"}>Stop</th>
@@ -96,15 +96,15 @@ export default function ListofTrains() {
         </table>
       </div>
 
-      <div id='stopView'>
-        <div className='introStop'>
+      <div id="stopView">
+        <div className="introStop">
           <h1>Stops List</h1>
           {/* Dropdown */}
-          <div className='stopsTable-Container'>
-            <div id='dropdownStops'>
-              <label for='cars'>Choose a stop:</label>
+          <div className="stopsTable-Container">
+            <div id="dropdownStops">
+              <label for="cars">Choose a stop:</label>
               {/* OnChange will get the value of a city */}
-              <select name='stops' id='stops' onChange={getSelectValue}>
+              <select name="stops" id="stops" onChange={getSelectValue}>
                 {/* Basic option on every refresh */}
                 <option disabled selected value>
                   -- select an option --
@@ -117,7 +117,7 @@ export default function ListofTrains() {
             {/* End of Dropdown */}
           </div>
         </div>
-        <table id='stopsTable' className={mapDropSelection ? "" : "stopidTable"}>
+        <table id="stopsTable" className={mapDropSelection ? "" : "stopidTable"}>
           <thead>
             <tr>
               <th>id</th>

@@ -31,9 +31,7 @@ export default function Mover() {
       .then((response) => {
         console.log(response);
         const stopsListRaw = response.data;
-        const filteredStops = [
-          ...new Set(stopsListRaw.map((data) => data.city)),
-        ];
+        const filteredStops = [...new Set(stopsListRaw.map((data) => data.city))];
         setStopsFiltered(filteredStops);
         setStopsList(stopsListRaw);
         console.log(stopsListRaw);
@@ -82,7 +80,7 @@ export default function Mover() {
           </tr>
         </thead>
         <tbody>
-          {runningTrainsList
+          {runningTrainsList && runningTrainsList.length
             ? runningTrainsList.map((element, index) => (
                 <tr key={index}>
                   <td>{element.id}</td>
@@ -93,11 +91,7 @@ export default function Mover() {
                     {/* Dropdown running trains */}
                     <div>
                       <label for="cars">Choose a destination:</label>
-                      <select
-                        name="stops"
-                        id="stops"
-                        onChange={(e) => getSelectValue(e, element)}
-                      >
+                      <select name="stops" id="stops" onChange={(e) => getSelectValue(e, element)}>
                         <option disabled selected value>
                           -- Where do you want to send your train? --
                         </option>
